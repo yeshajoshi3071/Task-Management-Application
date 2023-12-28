@@ -1,5 +1,5 @@
 <!-- [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/OuSBNpwM) -->
-# Kanban Board Project
+# KTask Management Application
 
 ## Description
 The Kanban Board application is designed to streamline task management and enhance team collaboration. By offering a visual representation of tasks categorized into columns like "To Do," "In Progress," "Review," and "Done," it provides a clear overview of the project's workflow. Each team member can effortlessly create, prioritize, and track tasks, fostering transparency and efficiency within the team.
@@ -39,12 +39,6 @@ The Kanban Board system follows a modular architecture to ensure scalability and
 <!--Image insert-->
 ![Class Diagram](docs/class_diagram.png)
 
-
-## Team Members
-- Shashwat Shahi - shahi.sh@northeastern.edu
-- Tejashree Gore - gore.te@northeastern.edu
-- Sarvesh Sawant - sawant.sar@northeastern.edu
-- Yesha Joshi - - joshi.ye@northeastern.edu
 
 ## Features
 - Create and manage tasks with titles, descriptions, due dates and subtasks.
