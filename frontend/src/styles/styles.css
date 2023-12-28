@@ -1,0 +1,25 @@
+/* styles.css */
+
+/* Default styles for the sidebar */
+.sidebar {
+    display: none; /* Hide sidebar by default on desktop */
+  }
+  
+  /* Mobile view - show sidebar when it's open */
+  .sidebar.open {
+    display: block;
+  }
+  
+  /* Media query for desktop view */
+  @media screen and (min-width: 768px) {
+    /* Show sidebar by default on desktop */
+    .sidebar {
+      display: block;
+    }
+    
+    /* Hide toggle button on desktop */
+    .mobile-view-toggle {
+      display: none;
+    }
+  }
+  

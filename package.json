@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@material-ui/icons": "^4.11.3",
+    "@sweetalert2/themes": "^5.0.15"
+  }
+}

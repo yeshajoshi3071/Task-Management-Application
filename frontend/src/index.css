@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  @apply bg-[#20212C] text-white box-border;
+}
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+/* ::-webkit-scrollbar-thumb {
+  @apply bg-purple-400 rounded-xl;
+} */
+::-webkit-scrollbar-track {
+  background-color: transparent; /* Change this to the color you want */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Change this to the color you want */
+  border: none; /* Remove scrollbar thumb border */
+}
+

@@ -1,0 +1,592 @@
+openapi: 3.1.0
+info:
+  title: Kanban Board API
+  description: REST API to manage tasks.
+  version: 'v1.0'
+servers:
+  - url: http://localhost:8080
+paths:
+  /createUser:
+    post: 
+      operationId: create-user
+      description: Create a new User
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/User'
+      responses: 
+        "200":
+          description: "User is created successfully."
+          content: 
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/User"
+        "500":
+          description: "Internal Server Error "
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+  /readUser/{userId}:
+    get:
+      operationId: read-user
+      description: Read a User Details
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      
+      responses:
+        "200":
+          description: "User Details fetched successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /updateUser/{userId}:
+    post:
+      operationId: update-user
+      description: Update a User Details
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        "200":
+          description: "User Details updated successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/User"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deleteUser/{userId}:
+    post:
+      operationId: delete-user
+      description: Delete a User
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "User deleted successfully."
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "User 101 deleted successfully"
+        "404":
+          description: "User not found"
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "User 101 not found"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /createBoard:
+    post: 
+      operationId: create-board
+      description: Create a new board
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Board'
+      responses: 
+        "200":
+          description: "Board is created successfully."
+          content: 
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/Board"
+        "500":
+          description: "Internal Server Error "
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+  /readBoard/{boardId}:
+    get:
+      operationId: read-board
+      description: Read Board Details
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      
+      responses:
+        "200":
+          description: "Board Details fetched successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Board'
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /updateBoard/{boardId}:
+    post:
+      operationId: update-board
+      description: Update a board
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Board'
+      responses:
+        "200":
+          description: "Board Details updated successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Board"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deleteBoard/{boardId}:
+    post:
+      operationId: delete-board
+      description: Delete a Board
+      parameters:
+        - name: boardId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "Board deleted successfully."
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Board 101 deleted successfully"
+        "404":
+          description: "Board not found"
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Board 101 not found"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /createTask:
+    post: 
+      operationId: create-task
+      description: Create a new task
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Task'
+      responses: 
+        "200":
+          description: "Task is created successfully."
+          content: 
+            application/json:
+              schema: 
+                type: object
+                $ref: "#/components/schemas/Task"
+        "500":
+          description: "Internal Server Error "
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+  /readTask/{taskId}:
+    get:
+      operationId: read-task
+      description: Read a task
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      
+      responses:
+        "200":
+          description: "Task fetched successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Task"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /updateTask/{taskId}:
+    post:
+      operationId: update-task
+      description: Update a task
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Task'
+      responses:
+        "200":
+          description: "Task updated successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Task"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deleteTask/{taskId}:
+    post:
+      operationId: delete-task
+      description: Delete a task
+      parameters:
+        - name: taskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "Task deleted successfully."
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Task 101 deleted successfully"
+        "404":
+          description: "Task not found"
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Task 101 not found"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /createSubtask:
+    post: 
+      operationId: create-subtask
+      description: Create a new sub-task
+      requestBody: 
+        content:
+          application/json:
+            schema: 
+              $ref: '#/components/schemas/Subtask'
+      responses: 
+        "200":
+          description: "Subtask is created successfully."
+          content: 
+            application/json:
+              schema: 
+                type: object
+                $ref: '#/components/schemas/Subtask'
+        "500":
+          description: "Internal Server Error "
+          content: 
+            application/json:
+              schema: 
+                $ref: "#/components/schemas/Error"
+  /readSubtask/{subtaskId}:
+    get:
+      operationId: read-subtask
+      description: Read a subtask
+      parameters:
+        - name: subtaskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      
+      responses:
+        "200":
+          description: "Subtask fetched successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: '#/components/schemas/Subtask'
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /updateSubrask/{subtaskId}:
+    post:
+      operationId: update-subtask
+      description: Update a subtask
+      parameters:
+        - name: subtaskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subtask'
+      responses:
+        "200":
+          description: "Subtask updated successfully."
+          content:
+            application/json:
+              schema:
+                type: object
+                $ref: "#/components/schemas/Subtask"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deleteSubtask/{subtaskId}:
+    post:
+      operationId: delete-subtask
+      description: Delete a subtask
+      parameters:
+        - name: subtaskId
+          in: path
+          required: true
+          example: 1
+          schema:
+            type: integer
+            format: int32
+      responses:
+        "200":
+          description: "Subtask deleted successfully."
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Subtask 101 deleted successfully"
+        "404":
+          description: "Task not found"
+          content:
+            text/plain:
+              schema:
+                type: string
+                examples:
+                  -  "Subtask 101 not found"
+        "500":
+          description: "Internal Server Error "
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    User:
+      type: object
+      properties: 
+        id:
+          type: integer
+          examples:
+            - 1
+        firstName:
+          type: string
+          examples:
+            - John
+        lastName:
+          type: string
+          examples:
+            - Smith
+        email:
+          type: string
+          examples:
+            - john.smith@example.com
+        password:
+          type: string
+        phoneNumber:
+          type: string
+          examples:
+            - 1234567890
+        boards:
+          type: array
+          items:
+            $ref: '#/components/schemas/Board'
+              
+          
+
+    Board:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples:
+            - 1
+        name:
+          type: string
+          examples:
+            - Northeastern University Sem 1
+        columns:
+          type: array
+          items:
+            type: string
+        tasks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Task'
+
+    Task:
+      type: object
+      properties: 
+        id:
+          type: integer
+          examples:
+            - 1
+        title:
+          type: string
+          examples:
+            - Credit card bill
+        description:
+          type: string
+          examples:
+            - Pay credit card bill before due date
+        dueDate:
+          type: string
+          format: date
+          examples:
+            - 2023-11-11
+        label:
+          type: string
+          examples: 
+            - personal
+        attachmentPath:
+          type: string
+          examples:
+            - some string
+        subtasks:
+          type: array
+          items: 
+            $ref: '#/components/schemas/Subtask'     
+        priority:
+          type: string
+          examples:
+            - High
+        stauts:
+          type: string
+          examples: 
+            - Doing
+          
+    Subtask:
+      type: object
+      properties:
+        id:
+          type: integer
+          examples: 
+            - 1
+        title:
+          type: string
+          examples: 
+            - subtask
+    
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code
+          examples:
+            - InternalServerError
+        message:
+          type: string
+          description: Error message
+          examples:
+            - Something went wrong at our end. Please try again later.
